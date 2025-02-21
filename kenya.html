@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenya Travel Booking</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e65c00;
+            --secondary-color: #228B22;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --light-bg: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/1080') center/cover;
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 5%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .contact-info i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .social-links a {
+            color: white;
+            margin-left: 1rem;
+            text-decoration: none;
+        }
+
+        .main-header {
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        /* Navigation Styles */
+        .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* Search Form */
+        .search-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 2rem;
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .search-group {
+            position: relative;
+        }
+
+        .search-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .search-group input,
+        .search-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Featured Destinations */
+        .featured {
+            padding: 5rem 5%;
+            background: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .destination-img {
+            height: 200px;
+            background: url('/api/placeholder/400/200') center/cover;
+        }
+
+        .destination-content {
+            padding: 1.5rem;
+        }
+
+        .destination-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        .destination-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .destination-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--light-bg);
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Popular Activities */
+        .activities {
+            padding: 5rem 5%;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .activity-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 5%;
+            background: var(--light-bg);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: url('/api/placeholder/60/60') center/cover;
+        }
+
+        .testimonial-rating {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #222;
+            color: white;
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-form {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="contact-info">
+                <span><i class="fas fa-phone"></i>+254 711880580</span>
+                <span><i class="fas fa-envelope"></i>collinsang011@gmail.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        
+        <div class="main-header">
+            <a href="#" class="logo">Kenya<span>Safaris</span></a>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#destinations">Destinations</a>
+                <a href="#activities">Activities</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-secondary" onclick="openModal('loginModal')">Login</button>
+                <button class="btn btn-primary" onclick="openModal('registerModal')">Register</button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Discover Kenya's Natural Beauty</h1>
+            <p>Experience the magic of Kenya's wildlife, culture, and landscapes with our expertly curated tours and safaris.</p>
+            <div class="search-form">
+                <div class="search-grid">
+                    <div class="search-group">
+                        <label>Destination</label>
+                        <select id="destination">
+                            <option value="">Select Destination</option>
+                            <option value="masai-mara">Masai Mara</option>
+                            <option value="amboseli">Amboseli</option>
+                            <option value="tsavo">Tsavo</option>
+                            <option value="nakuru">Lake Nakuru</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>Check In</label>
+                        <input type="date" id="checkIn">
+                    </div>
+                    <div class="search-group">
+                        <label>Check Out</label>
+                        <input type="date" id="checkOut">
+                    </div>
+                    <div class="search-group">
+                        <label>Guests</label>
+                        <select id="guests">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4+ People</option>
+                        </select>
+                    </div>
+                    <div class="search-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" style="width: 100%" onclick="searchTours()">Search Tours</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Destinations -->
+    <section class="featured" id="destinations">
+        <div class="section-title">
+            <h2>Featured Destinations</h2>
+            <p>Explore Kenya's most popular safari destinations and natural wonders</p>
+        </div>
+        <div class="destinations-grid">
+        <div class="destination-card">
+                <div class="destination-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="destination-content">
+                    <h3>Masai Mara National Reserve</h3>
+                    <p>Experience the world-famous wildebeest migration and incredible wildlife viewing in Kenya's most popular reserve.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-clock"></i> 3-7 Days</li>
+                        <li><i class="fas fa-user-friends"></i> Max 6 per vehicle</li>
+                        <li><i class="fas fa-hotel"></i> Luxury camps available</li>
+                    </ul>
+                </div>
+                <div class="destination-footer">
+                    <span class="price">From $299/day</span>
+                    <button class="btn btn-primary" onclick="openBooking('masai-mara')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="destination-content">
+                    <h3>Amboseli National Park</h3>
+                    <p>Witness majestic elephants against the backdrop of Mount Kilimanjaro in this stunning national park.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-clock"></i> 2-5 Days</li>
+                        <li><i class="fas fa-user-friends"></i> Max 8 per group</li>
+                        <li><i class="fas fa-camera"></i> Perfect for photography</li>
+                    </ul>
+                </div>
+                <div class="destination-footer">
+                    <span class="price">From $249/day</span>
+                    <button class="btn btn-primary" onclick="openBooking('amboseli')">Book Now</button>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <div class="destination-img" style="background-image: url('/api/placeholder/400/200')"></div>
+                <div class="destination-content">
+                    <h3>Tsavo National Park</h3>
+                    <p>Explore Kenya's largest national park, home to the famous red elephants and diverse landscapes.</p>
+                    <ul class="features">
+                        <li><i class="fas fa-clock"></i> 3-6 Days</li>
+                        <li><i class="fas fa-map"></i> East & West parks</li>
+                        <li><i class="fas fa-campground"></i> Adventure camping</li>
+                    </ul>
+                </div>
+                <div class="destination-footer">
+                    <span class="price">From $199/day</span>
+                    <button class="btn btn-primary" onclick="openBooking('tsavo')">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Activities -->
+    <section class="activities" id="activities">
+        <div class="section-title">
+            <h2>Popular Activities</h2>
+            <p>Choose from our selection of exciting safari activities and experiences</p>
+        </div>
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Wildlife Photography</h3>
+                <p>Capture stunning photos of Africa's most iconic wildlife with our expert guides.</p>
+                <button class="btn btn-secondary" onclick="bookActivity('photography')">Learn More</button>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-icon">
+                    <i class="fas fa-hot-air-balloon"></i>
+                </div>
+                <h3>Hot Air Balloon Safari</h3>
+                <p>Experience the magic of dawn over the Masai Mara from a hot air balloon.</p>
+                <button class="btn btn-secondary" onclick="bookActivity('balloon')">Learn More</button>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Cultural Visits</h3>
+                <p>Visit traditional Maasai villages and learn about their rich culture.</p>
+                <button class="btn btn-secondary" onclick="bookActivity('cultural')">Learn More</button>
+            </div>
+
+            <div class="activity-card">
+                <div class="activity-icon">
+                    <i class="fas fa-hiking"></i>
+                </div>
+                <h3>Nature Walks</h3>
+                <p>Explore the wilderness on foot with our experienced naturalist guides.</p>
+                <button class="btn btn-secondary" onclick="bookActivity('walking')">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>What Our Guests Say</h2>
+            <p>Read about experiences from our satisfied customers</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-img"></div>
+                    <div>
+                        <h4>Sarah Johnson</h4>
+                        <p>United Kingdom</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"An incredible experience! The wildlife viewing exceeded all expectations, and our guide was extremely knowledgeable."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-img"></div>
+                    <div>
+                        <h4>Michael Chen</h4>
+                        <p>Singapore</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p>"The hot air balloon safari was magical. Watching the sunrise over the Mara was unforgettable."</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-img"></div>
+                    <div>
+                        <h4>Lisa Martinez</h4>
+                        <p>United States</p>
+                    </div>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half"></i>
+                </div>
+                <p>"Perfect organization from start to finish. The accommodations were excellent and the staff was very friendly."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <p>KenyaSafaris is your trusted partner for exceptional safari experiences in Kenya. We specialize in customized tours that showcase the best of Kenya's wildlife and culture.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#activities">Activities</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone"></i> +254 700 000000</li>
+                    <li><i class="fas fa-envelope"></i> info@kenyasafaris.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates and offers.</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KenyaSafaris. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p class="form-footer">
+                    Don't have an account? <a href=" onclick="switchModal('loginModal', 'registerModal')">Register</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPhone">Phone</label>
+                    <input type="tel" id="registerPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <p class="form-footer">
+                    Already have an account? <a href= onclick="switchModal('registerModal', 'loginModal')">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Book Your Safari</h2>
+            <form id="bookingForm" onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label for="bookingDestination">Destination</label>
+                    <select id="bookingDestination" required>
+                        <option value="">Select Destination</option>
+                        <option value="masai-mara">Masai Mara</option>
+                        <option value="amboseli">Amboseli</option>
+                        <option value="tsavo">Tsavo</option>
+                        <option value="nakuru">Lake Nakuru</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDate">Travel Date</label>
+                    <input type="date" id="bookingDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingDuration">Duration (Days)</label>
+                    <select id="bookingDuration" required>
+                        <option value="3">3 Days</option>
+                        <option value="4">4 Days</option>
+                        <option value="5">5 Days</option>
+                        <option value="6">6 Days</option>
+                        <option value="7">7 Days</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingGuests">Number of Guests</label>
+                    <select id="bookingGuests" required>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5+ People</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingAccommodation">Accommodation Type</label>
+                    <select id="bookingAccommodation" required>
+                        <option value="luxury">Luxury Lodge</option>
+                        <option value="standard">Standard Lodge</option>
+                        <option value="camping">Camping</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingNotes">Special Requirements</label>
+                    <textarea id="bookingNotes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function switchModal(closeId, openId) {
+            closeModal(closeId);
+            openModal(openId);
+        }
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Add your login logic here
+            console.log('Login attempt:', { email, password });
+            alert('Login successful!');
+            closeModal('loginModal');
+        }
+
+        // Handle Registration
+        function handleRegister(event) {
+            event.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Add your registration logic here
+            console.log('Registration:', { name, email, phone, password });
+            alert('Registration successful! Please login.');
+            switchModal('registerModal', 'loginModal');
+        }
+
+        // Handle Booking
+        function handleBooking(event) {
+            event.preventDefault();
+            const booking = {
+                destination: document.getElementById('bookingDestination').value,
+                date: document.getElementById('bookingDate').value,
+                duration: document.getElementById('bookingDuration').value,
+                guests: document.getElementById('bookingGuests').value,
+                accommodation: document.getElementById('bookingAccommodation').value,
+                notes: document.getElementById('bookingNotes').value
+            };
+
+            // Add your booking logic here
+            console.log('Booking:', booking);
+            alert('Booking submitted successfully! We will contact you shortly.');
+            closeModal('bookingModal');
+        }
+
+        // Search Tours
+        function searchTours() {
+            const searchData = {
+                destination: document.getElementById('destination').value,
+                checkIn: document.getElementById('checkIn').value,
+                checkOut: document.getElementById('checkOut').value,
+                guests: document.getElementById('guests').value
+            };
+
+            // Validate dates
+            if (new Date(searchData.checkIn) > new Date(searchData.checkOut)) {
+                alert('Check-out date must be after check-in date');
+                return;
+            }
+
+            // Add your search logic here
+            console.log('Search:', searchData);
+            // Scroll to destinations section
+            document.getElementById('destinations').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open Booking Modal for specific destination
+        function openBooking(destination) {
+            document.getElementById('bookingDestination').value = destination;
+            openModal('bookingModal');
+        }
+
+        // Book Activity
+        function bookActivity(activity) {
+            const activities = {
+                'photography': 'Wildlife Photography Safari',
+                'balloon': 'Hot Air Balloon Safari',
+                'cultural': 'Cultural Village Visit',
+                'walking': 'Guided Nature Walk'
+            };
+
+            alert(`Booking ${activities[activity]}. Please login or register to continue.`);
+            openModal('loginModal');
+        }
+
+        // Newsletter Subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Add your newsletter subscription logic here
+            console.log('Newsletter subscription:', email);
+            alert('Thank you for subscribing to our newsletter!');
+            event.target.reset();
+        }
+
+        // Utility Functions
+        function formatCurrency(amount) {
+    return new Intl.NumberFormat('en-KE', {
+        style: 'currency',
+        currency: 'KES'
+    }).format(amount);
+}
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validatePhone(phone) {
+            return /^\+?[\d\s-]{10,}$/.test(phone);
+        }
+
+        // Dynamic Price Calculator
+        function calculatePrice(destination, duration, guests, accommodation) {
+            const basePrices = {
+                'masai-mara': 299,
+                'amboseli': 249,
+                'tsavo': 199,
+                'nakuru': 179
+            };
+
+            const accommodationMultiplier = {
+                'luxury': 1.5,
+                'standard': 1,
+                'camping': 0.7
+            };
+
+            const basePrice = basePrices[destination] || 200;
+            const total = basePrice * duration * guests * accommodationMultiplier[accommodation];
+            return total;
+        }
+
+        // Initialize date inputs with minimum dates
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.min = today;
+            });
+
+            // Add event listeners for dynamic price updates
+            const priceInputs = ['bookingDestination', 'bookingDuration', 'bookingGuests', 'bookingAccommodation'];
+            priceInputs.forEach(id => {
+                document.getElementById(id)?.addEventListener('change', updatePrice);
+            });
+        });
+
+        // Update price dynamically
+        function updatePrice() {
+            const destination = document.getElementById('bookingDestination').value;
+            const duration = parseInt(document.getElementById('bookingDuration').value);
+            const guests = parseInt(document.getElementById('bookingGuests').value);
+            const accommodation = document.getElementById('bookingAccommodation').value;
+
+            if (destination && duration && guests && accommodation) {
+                const total = calculatePrice(destination, duration, guests, accommodation);
+                const perPerson = total / guests;
+                
+                // Update price display if it exists
+                const priceDisplay = document.querySelector('.booking-price');
+                if (priceDisplay) {
+                    priceDisplay.innerHTML = `
+                        Total: ${formatCurrency(total)}<br>
+                        Per Person: ${formatCurrency(perPerson)}
+                    `;
+                }
+            }
+        }
+
+        // Handle window clicks to close modals
+        window.onclick = function(event) {
+            const modals = document.getElementsByClassName('modal');
+            for (let modal of modals) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+
+        // Handle navigation menu for mobile
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle?.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
